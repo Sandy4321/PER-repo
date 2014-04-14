@@ -8,9 +8,9 @@ import re
 import time
 import pickle
 
-teams_chart = {}
+teams_chart = {}   #  {"Team": [Players]}
 
-title = []
+title = []         #  ["stat headers"]
 totalStats = []    #  [[page1[players], [page[2][players]], ...]
 
 def loadTeams():
@@ -64,8 +64,8 @@ for pgNum in range(1, 8):
     pageHTML = page.read()
     soup = BeautifulSoup(pageHTML)
     
-    stats = []
-    stats_split = []
+    stats = []              #  [TD]
+    stats_split = []        #  [[Row TD1], [Row TD2], ...]
     
     if pgNum == 1:
         for t_row in soup.findAll("tr", {"class":"colhead"}):
