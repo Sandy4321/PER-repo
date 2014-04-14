@@ -8,9 +8,9 @@ import re
 import time
 import pickle
 
-teams_chart = {}
+teams_chart = {}   #  {"Team": [Players]}
 
-title = []
+title = []         #  ["stat headers"]
 totalStats = []    #  [[page1[players], [page[2][players]], ...]
 
 def loadTeams():
@@ -33,7 +33,7 @@ def loadTeams():
                 
 def sumPERteam(team):
     """
-    Input the team name as string and returns 
+    Input the team name as string and returns list of
     the sum of PER team and PER avg of players on the team
     
     sumerPERteam(String) -> list float[team PER sum, team PER avg   per player]
@@ -64,8 +64,8 @@ for pgNum in range(1, 8):
     pageHTML = page.read()
     soup = BeautifulSoup(pageHTML)
     
-    stats = []
-    stats_split = []
+    stats = []            #  [TD] - All the table data in current page being scraped
+    stats_split = []      #  [[Row TD1], [Row TD2], ...]
     
     if pgNum == 1:
         for t_row in soup.findAll("tr", {"class":"colhead"}):
@@ -95,3 +95,4 @@ loadTeams()
 print teams_chart
 print "OKC - PER", sumPERteam("OKC")
 print "SA - PER", sumPERteam("SA")
+print "MIA - PER", sumPERteam("MIA")
