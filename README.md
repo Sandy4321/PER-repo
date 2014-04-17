@@ -1,4 +1,3 @@
-
 Eastern Conference
 
 1.Indiana Pacers - 8.Atlanta Hawks:  [131.27, 14.59, 9] - [160.8, 14.62, 11]
@@ -12,9 +11,9 @@ Eastern Conference
 
 Western Conference
 
-1.San Antonio - 8.Memphis:  [195.89, 16.32, 12] - [212.71, 15.19, 14]
+1.San Antonio - 8.Dallas:  [195.89, 16.32, 12] - [169.87, 16.99, 10]
 
-2.Oklahoma City - 7.Dallas:  [175.39, 14.62, 12] - [169.87, 16.99, 10]
+2.Oklahoma City - 7.Memphis:  [175.39, 14.62, 12] - [212.71, 15.19, 14]
 
 3.L.A. Clippers - 6.Golden State:  [156.9, 15.69, 10] - [155.94, 15.59, 10]
 
