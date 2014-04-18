@@ -4,9 +4,9 @@ Eastern Conference
 
 2.Miami Heat- 7.Charlotte Bobcats:  [180.69, 15.06, 12] - [189.7, 13.55, 14]
 
-3.Toronto Raptors - 6.Washington Wizards:  [199.39, 14.24, 14] - [166.91, 13.91, 12]
+3.Toronto Raptors - 6.Brooklyn Nets:  [199.39, 14.24, 14] - [160.8, 14.62, 11]
 
-4.Chicago Bulls - 5.Brooklyn Nets:  [131.27, 14.59, 9] - [160.8, 14.62, 11]
+4.Chicago Bulls - 5.Washington Wizards:  [131.27, 14.59, 9] - [166.91, 13.91, 12]
 
 
 Western Conference
