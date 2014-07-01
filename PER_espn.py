@@ -6,10 +6,9 @@ from bs4 import BeautifulSoup
 import urllib2
 import re
 import time
-import pickle
+import csv
 
 teams_chart = {}   #  {"Team": [Players]}
-
 title = []         #  ["stat headers"]
 totalStats = []    #  [[page1[players], [page[2][players]], ...]
 
@@ -36,7 +35,7 @@ def sumPERteam(team):
     Input the team name as string and returns list of
     the sum of PER team and PER avg of players on the team
     
-    sumerPERteam(String) -> list float[team PER sum, team PER avg   per player]
+    sumerPERteam(String) -> list float[team PER sum, team PER avg per player, num of players]
     """
     totalsum = 0
     for player in teams_chart[team]:
@@ -44,7 +43,19 @@ def sumPERteam(team):
             for stats in pg:
                 if player in stats[1]:
                     totalsum += float(stats[11])
-    return [totalsum, totalsum/len(teams_chart[team])]
+    return [round(totalsum, 2), round(totalsum/len(teams_chart[team]), 2), len(teams_chart[team])]
+
+def fillRank():
+    """
+    Some ranking numbers are missing in the HTML table data 
+    """
+    currentRank = 1
+    for page in totalStats:
+        for line in page:
+            if line[0] == "":
+                line[0] = currentRank
+            currentRank += 1
+    return
         
 for pgNum in range(1, 8):
     """ 
@@ -87,12 +98,14 @@ for pgNum in range(1, 8):
 
 print totalStats
 
-f = open("PER_file.txt", "w")
-pickle.dump(totalStats, f)
-f.close()
+fillRank()  #Fill in missing rank data
+
+with open('playerStats.csv', 'wb') as csvfile:
+    writer = csv.writer(csvfile, delimiter=",")
+    writer.writerow(title)
+    for page in totalStats:
+        for line in page:
+            writer.writerow(line)
 
 loadTeams()
 print teams_chart
-print "OKC - PER", sumPERteam("OKC")
-print "SA - PER", sumPERteam("SA")
-print "MIA - PER", sumPERteam("MIA")
