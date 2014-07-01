@@ -6,9 +6,16 @@ from bs4 import BeautifulSoup
 import urllib2
 import re
 import time
+<<<<<<< HEAD
 import csv
 
 teams_chart = {}   #  {"Team": [Players]}
+=======
+import pickle
+
+teams_chart = {}   #  {"Team": [Players]}
+
+>>>>>>> 0abe1a9be624e3fc9007873a2e4abc650acb0e04
 title = []         #  ["stat headers"]
 totalStats = []    #  [[page1[players], [page[2][players]], ...]
 
@@ -32,10 +39,17 @@ def loadTeams():
                 
 def sumPERteam(team):
     """
+<<<<<<< HEAD
     Input the team name as string and returns list of
     the sum of PER team and PER avg of players on the team
     
     sumerPERteam(String) -> list float[team PER sum, team PER avg per player, num of players]
+=======
+    Input the team name as string and returns 
+    the sum of PER team and PER avg of players on the team
+    
+    sumerPERteam(String) -> list float[team PER sum, team PER avg   per player]
+>>>>>>> 0abe1a9be624e3fc9007873a2e4abc650acb0e04
     """
     totalsum = 0
     for player in teams_chart[team]:
@@ -43,6 +57,7 @@ def sumPERteam(team):
             for stats in pg:
                 if player in stats[1]:
                     totalsum += float(stats[11])
+<<<<<<< HEAD
     return [round(totalsum, 2), round(totalsum/len(teams_chart[team]), 2), len(teams_chart[team])]
 
 def fillRank():
@@ -56,6 +71,9 @@ def fillRank():
                 line[0] = currentRank
             currentRank += 1
     return
+=======
+    return [totalsum, totalsum/len(teams_chart[team])]
+>>>>>>> 0abe1a9be624e3fc9007873a2e4abc650acb0e04
         
 for pgNum in range(1, 8):
     """ 
@@ -75,8 +93,13 @@ for pgNum in range(1, 8):
     pageHTML = page.read()
     soup = BeautifulSoup(pageHTML)
     
+<<<<<<< HEAD
     stats = []            #  [TD] - All the table data in current page being scraped
     stats_split = []      #  [[Row TD1], [Row TD2], ...]
+=======
+    stats = []              #  [TD]
+    stats_split = []        #  [[Row TD1], [Row TD2], ...]
+>>>>>>> 0abe1a9be624e3fc9007873a2e4abc650acb0e04
     
     if pgNum == 1:
         for t_row in soup.findAll("tr", {"class":"colhead"}):
@@ -98,6 +121,7 @@ for pgNum in range(1, 8):
 
 print totalStats
 
+<<<<<<< HEAD
 fillRank()  #Fill in missing rank data
 
 with open('playerStats.csv', 'wb') as csvfile:
@@ -109,3 +133,13 @@ with open('playerStats.csv', 'wb') as csvfile:
 
 loadTeams()
 print teams_chart
+=======
+f = open("PER_file.txt", "w")
+pickle.dump(totalStats, f)
+f.close()
+
+loadTeams()
+print teams_chart
+print "OKC - PER", sumPERteam("OKC")
+print "SA - PER", sumPERteam("SA")
+>>>>>>> 0abe1a9be624e3fc9007873a2e4abc650acb0e04
